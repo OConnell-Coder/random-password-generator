@@ -18,18 +18,21 @@ function passGen () {
   if(low) temp+="abcdefghijklmnopqrstuvwxyz";
 
   var upper = confirm("Do you want your password to contain upper case letters?");
-  if(low) temp+="abcdefghijklmnopqrstuvwxyz".toUpperCase();
+  if(upper) temp+="abcdefghijklmnopqrstuvwxyz".toUpperCase();
 
   var special = confirm("Do you want your password to contain special characters?");
   if(special) temp+="~!@#$%^&*()_+=<>?/";
+
+  if (temp === ""){
+    alert("Your password must contain at least one of the following: numbers, lower case letters, upper case letters and/or special characters. Please try again.");
+    return passGen();
+  };
 
   for (var i = 0; i < len; i++) {
     password+= temp[Math.floor(Math.random()*temp.length)];
   };
 
-  document.getElementById("password").innerText=password;
+  document.getElementById("password").textContent=password;
 
-  console.log(temp);
+  // console.log(temp);
 };
-
-
